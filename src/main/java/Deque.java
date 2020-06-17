@@ -29,7 +29,7 @@ public class Deque {
         for (int i = 0; i < intNumber; i++) {
           Object num =queue;
             if(i == 0){
-                num.equals(deque);
+       //         num.equals(deque);
                 maxUnique++;
             }else{
                 if(deque.hashCode()== subArraySize){
