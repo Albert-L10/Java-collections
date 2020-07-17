@@ -1,48 +1,42 @@
 import java.util.ArrayDeque;
-import java.util.LinkedList;
+import java.util.HashSet;
+import java.util.Scanner;
+
+import static java.lang.Integer.MIN_VALUE;
 
 public class Deque {
-    public static void main(String [] args)
-    {
-        LinkedList<Integer> queue= new LinkedList<>();
 
-        int   maxUnique=0;
-        int intNumber=10;
-        int subArraySize=3;
+    public static void main(String[] args) {
 
-        queue.add(7);
-        queue.add(5);
-        queue.add(5);
-        queue.add(7);
-        queue.add(5);
-        queue.add(5);
-        queue.add(7);
-        queue.add(5);
-        queue.add(5);
-        queue.add(6);
+        Scanner input = new Scanner(System.in);
+        java.util.Deque<Integer> queue = new ArrayDeque<>();
+        HashSet<Integer> set = new HashSet<>();
+        int maxValue = MIN_VALUE;
+
+        System.out.println ("Enter the number of integers in your array: ");
+        int num = input.nextInt();
+        System.out.println ("Enter the size of your sub array: ");
+        int subArraySize = input.nextInt();
+        System.out.println ("Please enter your " +num + " numbers: ");
 
 
-        System.out.println("queue : " + queue + "\n");
+        for (int i = 0; i < num; i++) {
+            int queueInt = input.nextInt ( );
+            queue.add(queueInt);
+            set.add(queueInt);
 
-        ArrayDeque<Object> deque = new ArrayDeque<>();
 
-        for (int i = 0; i < intNumber; i++) {
-          Object num =queue;
-            if(i == 0){
-       //         num.equals(deque);
-                maxUnique++;
-            }else{
-                if(deque.hashCode()== subArraySize){
-                    deque.removeFirst();
+            if (queue.size() == subArraySize) {
+                if (set.size ( ) > maxValue) {
+                    maxValue= set.size();
                 }
-                if(!deque.contains(num) && maxUnique<subArraySize){
-                    maxUnique++;
-                }
-                deque.addLast(num);
+                int first = queue.remove();
+
+                if (!queue.contains(first)) set.remove(first);
             }
         }
-        System.out.println("max unique values: "+maxUnique);
+       System.out.println("Your highest number of unique values is: "+maxValue);
+
+
     }
-
-
 }
